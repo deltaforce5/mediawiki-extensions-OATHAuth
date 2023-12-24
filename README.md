@@ -13,7 +13,7 @@ Extension page: https://www.mediawiki.org/wiki/Extension:OATHAuth
 
 - Only when installing from Git, run Composer to install PHP dependencies, by issuing <code>composer install --no-dev</code> in the extension directory. (See task T173141 for potential complications.)
 ```
- cd
+ cd OATHAuth
  composer install --no-dev
 ```
 
@@ -26,7 +26,7 @@ PS: To avoid conflict with the "standard" OATHAuth extension, you may want to ch
 
 - Run the update script which will automatically create the necessary database tables that this extension needs.
 ```
- cd ../maintenance
+ cd ../../maintenance
  php update.php
 ```
 
