@@ -220,7 +220,8 @@ class HookHandler implements
 		$session = $user->getRequest()->getSession();
 		if (
 			!(bool)$session->get( OATHAuth::AUTHENTICATED_OVER_2FA, false ) &&
-			in_array( $action, $this->config->get( 'OATHExclusiveRights' ) )
+			in_array( $action, $this->config->get( 'OATHExclusiveRights' ) ) &&
+			!in_array( $title, $this->config->get( 'WhitelistRead' ) )
 		) {
 			$result = 'oathauth-action-exclusive-to-2fa';
 			return false;
