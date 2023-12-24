@@ -218,10 +218,16 @@ class HookHandler implements
 
 		// TODO: Get the session from somewhere more... sane?
 		$session = $user->getRequest()->getSession();
+
+		$WhitelistArray = $this->config->get( 'WhitelistRead' );
+                if ( !is_array( $WhitelistArray ) ) {
+                        $WhitelistArray = array();
+                }
+
 		if (
 			!(bool)$session->get( OATHAuth::AUTHENTICATED_OVER_2FA, false ) &&
 			in_array( $action, $this->config->get( 'OATHExclusiveRights' ) ) &&
-			!in_array( $title, $this->config->get( 'WhitelistRead' ) )
+			!in_array( $title, $WhitelistArray )
 		) {
 			$result = 'oathauth-action-exclusive-to-2fa';
 			return false;
